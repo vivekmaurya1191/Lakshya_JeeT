@@ -1,17 +1,30 @@
-# lakshya_jeet
+# Lakshya Jeet 🚀
 
-A new Flutter project.
+Lakshya Jeet is a Flutter-based productivity and self-improvement app designed to help users track their daily growth.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+* 📚 Study Tracker
+* 💻 Tech Tracker
+* 😴 Sleep Tracking
+* ⚡ XP & Level System
+* 🔥 Daily Streaks
+* 🏆 Achievements
+* 🎯 Daily Score Calculation
+* 💾 Local Data Persistence with Hive
 
-A few resources to get you started if this is your first Flutter project:
+## Built With
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+* Flutter
+* Dart
+* Hive Database
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Future Plans
+
+* Animations
+* Achievement Popups
+* Better Dashboard UI
+* Advanced Analytics
+* Cloud Sync
+
+Created by Vivek Maurya.

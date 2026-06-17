@@ -129,7 +129,13 @@ class _StudyScreenState extends State<StudyScreen> {
           },
         );
       }
+      if (UserData.studyHours >= UserData.studyGoal) {
+        UserData.xp += 50;
+      }
 
+      if (UserData.codingHours >= UserData.codingGoal) {
+        UserData.xp += 50;
+      }
       if (UserData.xp >= 100) {
         UserData.xp100Achievement = true;
       }

@@ -16,7 +16,10 @@ class AnalyticsScreen extends StatelessWidget {
           children: [
             Card(
               child: ListTile(
-                leading: const Icon(Icons.menu_book),
+                leading: const Icon(
+                  Icons.menu_book,
+                  color: Colors.green,
+                ),
                 title: const Text("Study Hours"),
                 trailing: Text(
                   "${UserData.studyHours}",
@@ -26,7 +29,10 @@ class AnalyticsScreen extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.code),
+                leading: const Icon(
+                  Icons.code,
+                  color: Colors.blue,
+                ),
                 title: const Text("Coding Hours"),
                 trailing: Text(
                   "${UserData.codingHours}",
@@ -36,7 +42,10 @@ class AnalyticsScreen extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.bolt),
+                leading: const Icon(
+                  Icons.bolt,
+                  color: Colors.amber,
+                ),
                 title: const Text("XP"),
                 trailing: Text(
                   "${UserData.xp}",
@@ -46,7 +55,10 @@ class AnalyticsScreen extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.star),
+                leading: const Icon(
+                  Icons.star,
+                  color: Colors.purple,
+                ),
                 title: const Text("Level"),
                 trailing: Text(
                   "${UserData.level}",
@@ -56,7 +68,10 @@ class AnalyticsScreen extends StatelessWidget {
 
             Card(
               child: ListTile(
-                leading: const Icon(Icons.local_fire_department),
+                leading: const Icon(
+                  Icons.local_fire_department,
+                  color: Colors.orange,
+                ),
                 title: const Text("Streak"),
                 trailing: Text(
                   "${UserData.streak}",

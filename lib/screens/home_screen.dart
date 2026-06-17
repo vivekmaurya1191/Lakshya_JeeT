@@ -4,7 +4,32 @@ import '../services/score_service.dart';
 import 'analytics_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+  String getGreeting() {
+    final hour = DateTime.now().hour;
 
+    if (hour < 12) {
+      return "Good Morning 👋";
+    } else if (hour < 17) {
+      return "Good Afternoon ☀️";
+    } else if (hour < 21) {
+      return "Good Evening 🌇";
+    } else {
+      return "Good Night 🌙";
+    }
+  }
+  String getQuote() {
+    final hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return "Start strong today 🚀";
+    } else if (hour < 17) {
+      return "Keep pushing forward 💪";
+    } else if (hour < 21) {
+      return "Finish what you started 🔥";
+    } else {
+      return "Rest and recharge 🌙";
+    }
+  }
   String getLevelName(int level) {
     switch (level) {
       case 1:
@@ -24,20 +49,34 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+
+        title: const Text(
+          "🚀 Lakshya Jeet",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            letterSpacing: 1,
+          ),
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.analytics),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const AnalyticsScreen(),
-                ),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Chip(
+              label: Text(
+                "🔥 ${UserData.streak}",
+              ),
+            ),
           ),
         ],
-        title: const Text("Lakshya Jeet"),
+        elevation: 0,
+
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(
+            color: Colors.deepPurple.withValues(alpha: 0.2),
+            height: 1,
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -45,15 +84,34 @@ class HomeScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.blue.shade100,
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFF1E293B),
+                  Color(0xFF334155),
+                ],
+              ),
+
               borderRadius: BorderRadius.circular(20),
+
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.deepPurple.withAlpha(80),
+                  blurRadius: 15,
+                  offset: const Offset(0, 6),
+                ),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Good Morning 👋",
-                  style: TextStyle(fontSize: 18),
+                Text(
+                  getGreeting(),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Text(
@@ -61,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -69,14 +127,17 @@ class HomeScreen extends StatelessWidget {
                 Text(
                   "Level ${UserData.level} • ${UserData.xp} XP",
                   style: const TextStyle(
-                    fontSize: 16,
+                    color: Colors.white70,
                   ),
                 ),
 
                 const SizedBox(height: 4),
 
-                const Text(
-                  "Small wins every day 🚀",
+                Text(
+                  getQuote(),
+                  style: const TextStyle(
+                    color: Colors.white70,
+                  ),
                 ),
               ],
             ),
@@ -117,8 +178,15 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-
                   const SizedBox(height: 10),
+
+                  LinearProgressIndicator(
+                    value: (UserData.xp / 500).clamp(0.0, 1.0),
+                    backgroundColor: Colors.white24,
+                    valueColor: const AlwaysStoppedAnimation(
+                      Colors.white,
+                    ),
+                  ),                  const SizedBox(height: 10),
 
                   LinearProgressIndicator(
                     value: (
@@ -206,7 +274,52 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
+                  const Text(
+                    "🎯 Daily Goals",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  Text(
+                    "📚 Study: ${UserData.studyHours}/${UserData.studyGoal} hrs",
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  LinearProgressIndicator(
+                    value: (UserData.studyHours /
+                        UserData.studyGoal)
+                        .clamp(0.0, 1.0),
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  Text(
+                    "💻 Coding: ${UserData.codingHours}/${UserData.codingGoal} hrs",
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  LinearProgressIndicator(
+                    value: (UserData.codingHours /
+                        UserData.codingGoal)
+                        .clamp(0.0, 1.0),
+                  ),
+                ],
+              ),
+            ),
+          ),
           const SizedBox(height: 20),
           const Text(
             "Today's Progress",
@@ -349,7 +462,19 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Icon(icon, size: 30),
+            Icon(
+              icon,
+              size: 30,
+              color: icon == Icons.bolt
+                  ? Colors.amber
+                  : icon == Icons.star
+                  ? Colors.purple
+                  : icon == Icons.local_fire_department
+                  ? Colors.orange
+                  : icon == Icons.bedtime
+                  ? Colors.indigo
+                  : Colors.blue,
+            ),
             const SizedBox(height: 8),
             Text(title),
             const SizedBox(height: 6),

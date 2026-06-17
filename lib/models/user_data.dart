@@ -88,7 +88,23 @@ class UserData {
       box.put('xp100Achievement', value);
   static String get lastSaveDate =>
       box.get('lastSaveDate', defaultValue: '');
+  static bool get darkMode =>
+      box.get('darkMode', defaultValue: false);
+
+  static set darkMode(bool value) =>
+      box.put('darkMode', value);
 
   static set lastSaveDate(String value) =>
       box.put('lastSaveDate', value);
+  static double get studyGoal =>
+      box.get('studyGoal', defaultValue: 6.0);
+
+  static set studyGoal(double value) =>
+      box.put('studyGoal', value);
+
+  static double get codingGoal =>
+      box.get('codingGoal', defaultValue: 2.0);
+
+  static set codingGoal(double value) =>
+      box.put('codingGoal', value);
 }

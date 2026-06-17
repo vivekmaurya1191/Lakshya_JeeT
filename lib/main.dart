@@ -27,7 +27,10 @@ class LakshyaJeetApp extends StatelessWidget {
       title: 'Lakshya Jeet',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
+        colorSchemeSeed: Colors.indigoAccent,
+        cardTheme: const CardThemeData(
+          elevation: 8,
+        )
       ),
       home: const MainNavigation(),
     );
@@ -57,6 +60,7 @@ class _MainNavigationState extends State<MainNavigation> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: NavigationBar(
+        indicatorColor: Colors.deepPurple.shade200,
         selectedIndex: currentIndex,
         onDestinationSelected: (index) {
           setState(() {
@@ -65,23 +69,42 @@ class _MainNavigationState extends State<MainNavigation> {
         },
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              color: Colors.blue,
+            ),
             label: "Home",
           ),
+
           NavigationDestination(
-            icon: Icon(Icons.book),
+            icon: Icon(
+              Icons.book,
+              color: Colors.green,
+            ),
             label: "Study",
           ),
+
           NavigationDestination(
-            icon: Icon(Icons.computer),
+            icon: Icon(
+              Icons.computer,
+              color: Colors.purple,
+            ),
             label: "Tech",
           ),
+
           NavigationDestination(
-            icon: Icon(Icons.bedtime),
+            icon: Icon(
+              Icons.bedtime,
+              color: Colors.indigo,
+            ),
             label: "Sleep",
           ),
+
           NavigationDestination(
-            icon: Icon(Icons.person),
+            icon: Icon(
+              Icons.person,
+              color: Colors.orange,
+            ),
             label: "Profile",
           ),
         ],

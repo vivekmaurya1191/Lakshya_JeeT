@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/user_data.dart';
 import '../services/score_service.dart';
+import 'analytics_screen.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -23,6 +24,19 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.analytics),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AnalyticsScreen(),
+                ),
+              );
+            },
+          ),
+        ],
         title: const Text("Lakshya Jeet"),
       ),
       body: ListView(

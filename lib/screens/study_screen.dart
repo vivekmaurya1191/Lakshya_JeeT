@@ -13,7 +13,54 @@ class _StudyScreenState extends State<StudyScreen> {
   late TextEditingController studyController;
   late TextEditingController codingController;
   late TextEditingController notesController;
-
+  void showAchievementPopup(
+      String title,
+      String description,
+      ) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: const Column(
+            children: [
+              Icon(
+                Icons.emoji_events,
+                size: 60,
+                color: Colors.amber,
+              ),
+              SizedBox(height: 10),
+              Text("Achievement Unlocked!"),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(description),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Awesome! 🚀"),
+            ),
+          ],
+        );
+      },
+    );
+  }
   @override
   void initState() {
     super.initState();
@@ -67,8 +114,20 @@ class _StudyScreenState extends State<StudyScreen> {
         UserData.firstSaveAchievement = true;
       }
 
-      if (UserData.studyHours >= 5) {
+      if (!UserData.studyMasterAchievement &&
+          UserData.studyHours >= 5) {
+
         UserData.studyMasterAchievement = true;
+
+        Future.delayed(
+          const Duration(milliseconds: 300),
+              () {
+            showAchievementPopup(
+              "🏆 Study Master",
+              "Completed 5+ study hours in a day!",
+            );
+          },
+        );
       }
 
       if (UserData.xp >= 100) {

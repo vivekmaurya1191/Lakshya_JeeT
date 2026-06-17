@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/study_screen.dart';
 import 'screens/tech_screen.dart';
-import 'screens/finance_screen.dart';
+import 'screens/sleep_screen.dart';
 import 'screens/profile_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
@@ -77,8 +77,8 @@ class _MainNavigationState extends State<MainNavigation> {
             label: "Tech",
           ),
           NavigationDestination(
-            icon: Icon(Icons.account_balance_wallet),
-            label: "Finance",
+            icon: Icon(Icons.bedtime),
+            label: "Sleep",
           ),
           NavigationDestination(
             icon: Icon(Icons.person),
